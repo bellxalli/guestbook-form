@@ -1,15 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guest Book</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Guest Book</title>
 
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Favicon -->
-</head>
-<body>
-    <h1>Hello</h1>
-</body>
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="styles.css">
+        <!-- Favicon -->
+    </head>
+    <body>
+        <h1>Contact Form</h1>
+
+        <form action="/submit" method="post">
+            <label>
+                First Name:
+                <input type="text" name="fname">
+            </label>
+            <label>
+                Last Name:
+                <input type="text" name="lname">
+            </label>
+            <label>
+                Job Title:
+                <input type="text" name="jtitle">
+            </label>
+            <label>
+                Company:
+                <input type="text" name="company">
+            </label>
+            <label>
+                LinkedIn URL:
+                <input type="text" name="url">
+            </label>
+            <label>
+                Email Address:
+                <input type="text" name="email">
+            </label>
+            <label>
+                How did we meet?
+                <select name="meeting">
+                    <option>Please select</option>
+                    <option>Meetup</option>
+                    <option>Job Fair</option>
+                    <option>Collegue</option>
+                    <option>Friend</option>
+                    <option>Other</option>
+                </select>
+            </label>
+            <label>
+                Other (Please Specify):
+                <input type="text" name="other">
+            </label>
+            <label>
+                Message:
+                <input type="text" name="message">
+            </label>
+                <input type="checkbox" name="mailing-list">Please add me to your mailing mailing-list
+            <label>
+                Choose an email format:
+                <input type="radio" name="format">HTML
+                <input type="radio" name="format">Text
+            </label>
+        </form>
+    </body>
 </html>
