@@ -1,4 +1,43 @@
 body
 {
-    color: red;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    padding: 100px /*fix for top*/
 }
+
+h1
+{
+    display: flex;
+    justify-content: center;
+}
+
+label
+{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+input, select
+{
+    width: 150px;
+    height: auto;
+}
+
+div
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+button
+{
+    background-color: green;
+}
+
+
+
+

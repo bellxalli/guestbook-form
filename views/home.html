@@ -13,55 +13,69 @@
         <h1>Contact Form</h1>
 
         <form action="/submit" method="post">
-            <label>
+            <div id="section1">
+                <label>
                 First Name:
                 <input type="text" name="fname">
-            </label>
-            <label>
-                Last Name:
-                <input type="text" name="lname">
-            </label>
-            <label>
-                Job Title:
-                <input type="text" name="jtitle">
-            </label>
-            <label>
-                Company:
-                <input type="text" name="company">
-            </label>
-            <label>
-                LinkedIn URL:
-                <input type="text" name="url">
-            </label>
-            <label>
-                Email Address:
-                <input type="text" name="email">
-            </label>
-            <label>
-                How did we meet?
-                <select name="meeting">
-                    <option>Please select</option>
-                    <option>Meetup</option>
-                    <option>Job Fair</option>
-                    <option>Collegue</option>
-                    <option>Friend</option>
-                    <option>Other</option>
-                </select>
-            </label>
-            <label>
-                Other (Please Specify):
-                <input type="text" name="other">
-            </label>
-            <label>
-                Message:
-                <input type="text" name="message">
-            </label>
+                </label>
+                <label>
+                    Last Name:
+                    <input type="text" name="lname">
+                </label>
+                <label>
+                    Job Title:
+                    <input type="text" name="jtitle">
+                </label>
+            </div>
+
+            <div id="section2">
+                <label>
+                    Company:
+                    <input type="text" name="company">
+                </label>
+                <label>
+                    LinkedIn URL:
+                    <input type="text" name="url">
+                </label>
+                <label>
+                    Email Address:
+                    <input type="text" name="email">
+                </label>
+            </div>
+
+            <div id="section3">
+                <label>
+                    How did we meet?
+                    <select name="meeting">
+                        <option>Please select</option>
+                        <option>Meetup</option>
+                        <option>Job Fair</option>
+                        <option>Collegue</option>
+                        <option>Friend</option>
+                        <option>Other</option>
+                    </select>
+                </label>
+                <label>
+                    Other (Please Specify):
+                    <input type="text" name="other">
+                </label>   
+            </div> 
+
+            <div id="section4">
+                <label>
+                    Message:
+                    <input type="text" name="message">
+                </label>
+            </div>
+
+            <div id="section5">
                 <input type="checkbox" name="mailing-list">Please add me to your mailing mailing-list
-            <label>
-                Choose an email format:
-                <input type="radio" name="format">HTML
-                <input type="radio" name="format">Text
-            </label>
+                <label>
+                    Choose an email format:
+                    <input type="radio" name="format">HTML
+                    <input type="radio" name="format">Text
+                </label>
+            </div>
             <button type="submit">Submit</button>
         </form>
     </body>
