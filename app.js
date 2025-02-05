@@ -23,10 +23,10 @@ app.get('/', (req, res) =>
 app.post('/submit', (req, res) =>
 {
     console.log(req.body);
-
     contacts.push(req.body);
 
-    res.send(`<h1>Submitted ${req.body.fname}!</h1>`);
+    res.send(`<h1>Submitted ${req.body.fname}!</h1>
+             <button onclick = "history.back()">Back</button>`); 
 });
 
 //admin page (view data input on form)
