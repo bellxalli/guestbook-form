@@ -19,11 +19,87 @@ app.get('/', (req, res) =>
     res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
 
+app.post('/', (req, res) => {
+
+   
+    
+    // Save task to our array
+    tasks.push(task);
+    
+    // Log the task to the console
+    console.log('New task added:', task);
+
+    // Render confirmation page instead of redirecting
+    res.render('confirmation', { task });
+});
+
 //page user is sent to after submit
 app.post('/submit', (req, res) =>
 {
     console.log(req.body);
     contacts.push(req.body);
+     // Get form data from request body
+     const contact = {
+        fname: req.body.fname,
+        lname: req.body.lname,
+        jtitle: req.body.jtitle,
+        company: req.body.company,
+        url: req.body.url,
+        email: req.body.email,
+        message: req.body.message,
+        timestamp: new Date()
+    };
+
+    if (contact.fname.trim() === "") 
+    {   res.send("Invalid First Name!");
+        return;
+    }
+
+    if (contact.lname.trim() === "") 
+    {   res.send("Invalid Last Name!");
+        return;
+    }
+
+    // if (!["Meetup", "Job Fair", "Collegue", "Friend", "Other"].includes(contact.meeting)) 
+    // {   res.send("Invalid meeting!");
+    //     return;
+    // }
+
+    // if(["Other"].includes(contact.meeting) && contact.other.trim() === "")
+    // {
+    //     res.send("Invalid! Please enter other meeting!");
+    //     return;
+    // }
+
+    if(contact.email.trim() === "")
+    {
+        res.send("Invalid email!");
+        return;
+    }
+
+    if(contact.jtitle.trim() === "")
+    {
+        res.send("Invalid job title");
+        return;
+    }
+
+    if(contact.url.trim() === "")
+    {
+        res.send("Invalid url");
+    }
+
+    if(contact.company.trim() === "")
+    {
+        res.send("Invalid company");
+        return;
+    }
+
+    if(contact.message.trim() === "")
+    {
+        res.send("Invalid message");
+        return;
+    }
+
 
     res.send(`<h1>Submitted ${req.body.fname}!</h1>
              <button onclick = "history.back()">Back</button>`); 
@@ -32,7 +108,9 @@ app.post('/submit', (req, res) =>
 //admin page (view data input on form)
 app.get('/admin/contacts', (req, res) =>
 {
-    res.send(contacts);
+    // res.send(contacts);
+    res.send(`${contacts}
+        <button onclick = "history.back()">Back</button>`);
 })
 
 //telling server to listen to specified port
