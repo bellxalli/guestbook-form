@@ -19,20 +19,6 @@ app.get('/', (req, res) =>
     res.sendFile(`${import.meta.dirname}/views/home.html`);
 });
 
-app.post('/', (req, res) => {
-
-   
-    
-    // Save task to our array
-    tasks.push(task);
-    
-    // Log the task to the console
-    console.log('New task added:', task);
-
-    // Render confirmation page instead of redirecting
-    res.render('confirmation', { task });
-});
-
 //page user is sent to after submit
 app.post('/submit', (req, res) =>
 {
@@ -99,10 +85,13 @@ app.post('/submit', (req, res) =>
         res.send("Invalid message");
         return;
     }
+    console.log("New contact added");
 
 
-    res.send(`<h1>Submitted ${req.body.fname}!</h1>
-             <button onclick = "history.back()">Back</button>`); 
+    // res.send(`${confirmation}
+    //          <button onclick = "history.back()">Back</button>`); 
+
+    res.render('confirmation', { contact });
 });
 
 //admin page (view data input on form)
