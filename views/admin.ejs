@@ -8,15 +8,20 @@
 <body>
     <h1>Admin</h1>
 
-    <% for(let i = 0; i < contacts.length; i++) { %>
-        <p>Name: <%= contacts[i].fname %> <%= contacts[i].lname %>
-            <br>Company: <%= contacts[i].company %> 
-            <br> Message: <%=contacts[i].message %> 
-            <br>Job Title: <%= contacts[i].jtitle %> 
-            <br>URL: <%= contacts[i].url %>
-            <br>Email: <%= contacts[i].email %>
-        </p>
-        <hr>
+    <% if(contacts.length === 0) { %>
+        <p>No contacts</p>
+    <% } else {%>
+        <% for(let i = 0; i < contacts.length; i++) { %>
+            
+            <p>Name: <%= contacts[i].fname %> <%= contacts[i].lname %>
+                <br>Company: <%= contacts[i].company %> 
+                <br> Message: <%=contacts[i].message %> 
+                <br>Job Title: <%= contacts[i].jtitle %> 
+                <br>URL: <%= contacts[i].url %>
+                <br>Email: <%= contacts[i].email %>
+            </p>
+            <hr>
+        <% } %>
     <% } %>
 
     <button onclick = "history.back()">Back</button>

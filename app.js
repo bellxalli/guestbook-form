@@ -32,7 +32,7 @@ app.post('/submit', (req, res) =>
     message: req.body.message,
     timestamp: new Date()
     };
-    
+
     //validation
     if (contact.fname.trim() === "") 
     {   res.send("Invalid First Name!");
@@ -81,7 +81,7 @@ app.post('/submit', (req, res) =>
 
 app.get('/admin/contacts', (req, res) =>
 {
-    res.render('admin');
+    res.render('admin', {contacts});
 });
 
 
