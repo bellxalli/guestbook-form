@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Form Summary</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Form Summary</h1>
 
-    <% for(let i = 0; i < contacts.length; i++) { %>
-        <p><%= orders[i].fName %> <%= orders[i].lName %></p>
-        <hr>
-    <% } %>
+        <% for(let i = 0; i < contacts.length; i++) { %>
+            <p>Name: <%= contacts[i].fname %> <%= contacts[i].lname %>
+                <br>Company: <%= contacts[i].company %> 
+                <br> Message: <%=contacts[i].message %> 
+                <br>Job Title: <%= contacts[i].jtitle %> 
+                <br>URL: <%= contacts[i].url %>
+                <br>Email: <%= contacts[i].email %>
+            </p>
+            <hr>
+        <% } %>    
 
-    <button onclick = "history.back()">Back</button>
-
-</body>
+        <button onclick = "history.back()">Back</button>
+    </body>
 </html>
