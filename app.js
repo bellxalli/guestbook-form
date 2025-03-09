@@ -1,4 +1,27 @@
 import express from 'express';
+import mariadb from 'mariadb';
+import validateForm from './services/validation.js';
+
+//Define our database credentials
+const pool = mariadb.createPool(
+{
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.PORT
+});
+
+//Define function to connect to the DB
+async function connect() {
+    try {
+        const conn = await pool.getConnection();
+        console.log('Connected to the database!')
+        return conn;
+    } catch (err) {
+        console.log(`Error connecting to the database ${err}`)
+    }
+}
 
 const app = express();
 
@@ -18,7 +41,7 @@ app.get('/', (req, res) =>
     res.render('home');
 });
 
-app.post('/submit', (req, res) =>
+app.post('/submit', async (req, res) =>
 {
     console.log(req.body);
     // Get form data from request body
@@ -34,49 +57,27 @@ app.post('/submit', (req, res) =>
     };
 
     //validation
-    if (contact.fname.trim() === "") 
-    {   res.send("Invalid First Name!");
-        return;
-    }
-
-    if (contact.lname.trim() === "") 
-    {   res.send("Invalid Last Name!");
-        return;
-    }
-
-    if(contact.email.trim() === "")
+    const result = validateForm(contact);
+    if (!result.isValid) 
     {
-        res.send("Invalid email!");
+        console.log(result.errors);
+        res.send(result.errors);
         return;
     }
 
-    if(contact.jtitle.trim() === "")
-    {
-        res.send("Invalid job title");
-        return;
-    }
+    const conn = await connect();
 
-    if(contact.url.trim() === "")
-    {
-        res.send("Invalid url");
-    }
-
-    if(contact.company.trim() === "")
-    {
-        res.send("Invalid company");
-        return;
-    }
-
-    if(contact.message.trim() === "")
-    {
-        res.send("Invalid message");
-        return;
-    }
+    //add query
+    const insertQuery = await conn.query(`insert into contacts (fname, lname, jtitle, company, url, email, message)
+                                          values (?, ?, ?, ?, ?, ?, ?);`,
+                                          [ contact.fname, contact.lname, contact.jtitle, contact.company, 
+                                            contact.url, contact.email, contact.message ]
+                                        );
     
-    contacts.push(contact);
+    // contacts.push(contact);
     console.log("New contact added");
 
-    res.render('confirmation', { contacts });
+    res.render('confirmation', { contact });
 });    
 
 app.get('/admin/contacts', (req, res) =>
@@ -92,4 +93,4 @@ app.listen(PORT, () =>
 });
 
 
-console.log('hello world');
+// console.log('hello world');
